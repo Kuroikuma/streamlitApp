@@ -1,39 +1,35 @@
 import streamlit as st
 
-# Navigation dictionary to structure pages and their titles/icons
-pages = {
-    "Información": [
-        {"page": "vistas/home.py", "title": "Inicio", "icon": "🏠"},
-        {"page": "vistas/acerca_de.py", "title": "Acerca de", "icon": "👤"},
-    ],
-    "Proyectos": [
-        {"page": "vistas/ventas.py", "title": "Ventas", "icon": "💼"},
-        {"page": "vistas/chatbot.py", "title": "Chat Bot", "icon": "🤖"},
-    ]
-}
-
-# Sidebar with navigation
-st.sidebar.title("Navegación")
-selection = st.sidebar.radio(
-    "Seleccione una página:",
-    [page["title"] for category in pages.values() for page in category]
+home = st.Page(
+page="vistas/home.py",
+title="Inicio",
+icon="🏠",
+#icon=":material/home:",
+default=True,
 )
-
-# Page content logic
-if selection == "Inicio":
-    st.title("Inicio")
-    # Include content or import for `home.py`
-    # Example: st.write("Welcome to the home page.")
-elif selection == "Acerca de":
-    st.title("Acerca de")
-    # Include content or import for `acerca_de.py`
-elif selection == "Ventas":
-    st.title("Ventas")
-    # Include content or import for `ventas.py`
-elif selection == "Chat Bot":
-    st.title("Chat Bot")
-    # Include content or import for `chatbot.py`
-
-# --- Logo and Credits ---
-st.sidebar.image("img/chatbot.png", use_column_width=True)
+acerca_de_page = st.Page(
+page="vistas/acerca_de.py",
+title="Acerca de",
+icon=":material/account_circle:",
+)
+project_1_page = st.Page(
+page="vistas/ventas.py",
+title="ventas",
+icon="📊",
+)
+project_2_page = st.Page(
+page="vistas/chatbot.py",
+title="Chat Bot",
+icon=":material/smart_toy:",
+)
+pg = st.navigation(
+  {
+    "Información:": [home, acerca_de_page],
+    "Projectos:": [project_1_page, project_2_page],
+  }
+)
+# --- LOGO Y DERECHOS DE ACTOR---
+# st.logo("img/chatbot.png")
 st.sidebar.markdown("Elaborado con ❤️ por [Streamlit](https://streamlit.io/gallery)")
+# --- EJECUTAR NAVEGACION ---
+pg.run()
