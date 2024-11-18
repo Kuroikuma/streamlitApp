@@ -1,21 +1,40 @@
-import os
-from dotenv import load_dotenv
-import google.generativeai as gemini
+import streamlit as st
+from forms.contacto import contact_form
 
-# Cargar las variables de entorno
-load_dotenv()
+def ver_form_contacto():
+    # Ventana modal para el formulario de contacto
+    contact_form()
 
-# Obtener la clave de la API
-api_key = os.getenv('Gemini_key')
+def mostrar():
+    col1, col2 = st.columns(2, gap="small")
+    with col1:
+        st.image("image/robot.jpg", width=230)
+    with col2:
+        st.title("Junior hurtado", anchor=False)
+        st.write(
+            "Analista de datos junior, que ayuda a las empresas apoyando la toma de decisiones basada en datos. "
+            "Especializado en Ciencia de Datos."
+        )
+  # Botón para mostrar el formulario de contacto en la ventana modal
+    if st.button("Contacto"):  
+        ver_form_contacto()
 
-if not api_key:
-    raise ValueError("N se encontro la clave de la api en las variables")
+    # --- Experiencia y calificaciones ---
+st.write("\n")
+st.subheader("Experiencia y calificaciones", anchor=False)
+st.write("""
+- Fuerte experiencia práctica y conocimiento en Python.
+- Buen conocimiento sobre la creaciones de app moviles.
+""")
 
-gemini.configure(api_key = api_key)
+    # --- HABILIDADES ---
+st.write("\n")
+st.subheader("Habilidades", anchor=False)
+st.write("""
+- Programación: Python (FastApi,Flask,Streamlit) y creacion de videos Juegos(godot)
+- Visualización de Datos:Plotly
+- Base de Datos:MongoDB, MySQL
+    """)
 
-prompt = "Genera un poema sobre inteligencia artificial"
-model = gemini.GenerativeModel(model_name='gemini-1.5-flash')
-response = model.generate_content(prompt)
-
-Generate_text = response('Generate_text','No se pudo generar texto')
-print(Generate_text)
+# Llama a la función principal
+mostrar()
