@@ -1,35 +1,39 @@
 import streamlit as st
 
+
 home = st.Page(
-page="vistas/home.py",
-title="Inicio",
-icon="🏠",
-#icon=":material/home:",
-default=True,
+  page="view/home.py",
+  title="Inicio",
+  icon="🏠",
+  default=True
 )
-acerca_de_page = st.Page(
-page="vistas/acerca_de.py",
-title="Acerca de",
-icon=":material/account_circle:",
+
+acerca_de = st.Page(
+    page="view/acerca_de.py",
+    title="Acerca de",
+    icon="👤",
 )
-project_1_page = st.Page(
-page="vistas/ventas.py",
-title="ventas",
-icon="📊",
+
+project_1 = st.Page(
+    page="view/ventas.py",
+    title="Ventas",
+    icon="🛒"
 )
-project_2_page = st.Page(
-page="vistas/chatbot.py",
-title="Chat Bot",
-icon=":material/smart_toy:",
+
+project_2 = st.Page(
+    page="view/chatbot.py",
+    title="Chatbot",
+    icon="🤖"
 )
+
 pg = st.navigation(
-  {
-    "Información:": [home, acerca_de_page],
-    "Projectos:": [project_1_page, project_2_page],
-  }
+    {
+        "Informacion:":[home,acerca_de],
+        "Projectos:":[project_1,project_2],
+    }
 )
-# --- LOGO Y DERECHOS DE ACTOR---
-# st.logo("img/chatbot.png")
-st.sidebar.markdown("Elaborado con ❤️ por [Streamlit](https://streamlit.io/gallery)")
-# --- EJECUTAR NAVEGACION ---
+
+# --Logo y derechos de actor--
+st.sidebar.markdown("Elaborado con ❤️ por [Streamlit](https://share.streamlit.io/user/Junior)")
+
 pg.run()
